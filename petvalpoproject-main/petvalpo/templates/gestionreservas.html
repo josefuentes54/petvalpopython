@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>Gestión de reservas</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <a class="btn btn-success mb-2" style="height: 40px; width: 200px;" href="{% url 'reservamedicacreate' %}">Crear Reserva</a>
+        </div>
+        <div class="col-2 offset-6">
+            <a href="{% url 'search' %}" class="btn btn-outline-primary" type="submit">Buscar reserva</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">RUT</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Nombre mascota</th>
+                        <th scope="col">Opciones</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservamedica in reservasmedicas %}
+                        <tr>
+                            <th scope="row">{{reservamedica.id}}</th>
+                            <td>{{reservamedica.nombreCliente}}</td>
+                            <td>{{reservamedica.apellidoCliente}}</td>
+                            <td>{{reservamedica.rutCliente}}</td>
+                            <td>{{reservamedica.telefonoCliente}}</td>
+                            <td>{{reservamedica.direccionCliente}}</td>
+                            <td>{{reservamedica.fechaReserva}}</td>
+                            <td>{{reservamedica.horaReserva}}</td>
+                            <td>{{reservamedica.mascotaCliente}}</td>
+                            <td><a class="btn btn-primary" href="{% url 'reservamedicaupdate' reservamedica.id %}">Editar</a></td>
+                            <td><a class="btn btn-danger" href="{% url 'reservamedicadelete' reservamedica.id %}">Eliminar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                {% for message in messages  %}
+                {% if message.tags == 'success' %}
+                    <div class="text-center alert alert-primary alert-dismissible fade show" role="alert">{{message}}
+                        <a href="{% url 'gestionreservas' %}" type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+                    </div>           
+                {% endif %}
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

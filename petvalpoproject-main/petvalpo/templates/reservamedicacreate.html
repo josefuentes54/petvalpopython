@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <h1>Nueva Reserva</h1>
+            <form method="POST">
+                {% csrf_token %}
+                
+                {{form|crispy}}
+                
+                {% for message in messages  %}
+                {% if message.tags == 'error' %}
+                <div class="text-center alert alert-danger alert-dismissible fade show mt-2" role="alert">{{message}}
+                    <a href="{% url 'reservamedicacreate' %}" type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <input class="m-2 btn btn-success" type="submit" value="Crear reserva">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

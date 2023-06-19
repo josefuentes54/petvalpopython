@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>Gestión de Inventario</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <a class="btn btn-success mb-2" href="{% url 'inventariocreate' %}">Ingresar producto</a>
+        </div>
+        <div class="col-2 offset-6">
+            <a href="{% url 'searchinventario' %}" class="btn btn-outline-primary" type="submit">Buscar producto</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre Producto</th>
+                        <th scope="col">Cantidad Producto</th>
+                        <th scope="col">Fecha de Compra</th>
+                        <th scope="col">Nombre Proveedor</th>
+                        <th scope="col">Telefono Proveedor</th>
+                        <th scope="col">Opciones</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gestioninventario in gestioninventarios %}
+                        <tr>
+                            <th scope="row">{{gestioninventario.id}}</th>
+                            <td>{{gestioninventario.nombreProducto}}</td>
+                            <td>{{gestioninventario.cantidadProducto}}</td>
+                            <td>{{gestioninventario.fechaCompra}}</td>
+                            <td>{{gestioninventario.nombreProveedor}}</td>
+                            <td>{{gestioninventario.telefonoProveedor}}</td>
+                            <td><a class="btn btn-primary" href="{% url 'inventarioupdate' gestioninventario.id %}">Editar</a></td>
+                            <td><a class="btn btn-danger" href="{% url 'inventariodelete' gestioninventario.id %}">Eliminar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                {% for message in messages  %}
+                {% if message.tags == 'success' %}
+                    <div class="text-center alert alert-primary alert-dismissible fade show" role="alert">{{message}}
+                        <a href="{% url 'gestioninventarios' %}" type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+                    </div>           
+                {% endif %}
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

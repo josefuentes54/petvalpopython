@@ -1,0 +1,68 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>PetValpo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href='{% static "style.css" %}'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar" class="active">
+				<h1><a href="#" class="logo">PV</a></h1>
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+        </button>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="{% url 'home' %}"><span class="fa fa-home"></span>Home</a>
+          </li>
+          <li>
+              <a href="{% url 'gestionreservas' %}"><span class="fa fa-user"></span>Gestión Reservas</a>
+          </li>
+          <li>
+            <a href="{% url 'gestionfuncionarios' %}"><span class="fa fa-sticky-note"></span>Funcionarios</a>
+          </li>
+          <li>
+            <a href="{% url 'gestioninventarios' %}"><span class="fa fa-cogs"></span>Inventario</a>
+          </li>
+          <li>
+            <a href="{% url 'login' %}"><span class="fa fa-paper-plane"></span>Cerrar Sesión</a>
+          </li>
+        </ul>
+
+        <div class="footer">
+        	<p>
+					  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Inacap.cl
+					</p>
+        </div>
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5">
+        <nav class="bg-light">
+          <div class="container-fluid">
+            
+          </div>
+        </nav>
+        {% block content %} {% endblock content %}
+      </div>
+		</div>
+
+    <script src='{% static "jquery.min.js" %}'></script>
+    <script src='{% static "popper.js" %}'></script>
+    <script src='{% static "bootstrap.min.js" %}'></script>
+    <script src='{% static "main.js" %}'></script>
+  </body>
+</html>

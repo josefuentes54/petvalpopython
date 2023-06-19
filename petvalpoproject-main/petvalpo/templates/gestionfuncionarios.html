@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>Funcionarios</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <a class="btn btn-success mb-2" href="{% url 'funcionariocreate' %}">Ingresar Funcionario</a>
+        </div>
+        <div class="col-2 offset-6">
+            <a href="{% url 'searchfuncionario' %}" class="btn btn-outline-primary" type="submit">Buscar funcionario</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">RUT</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Contacto Emergencia</th>
+                        <th scope="col">Telefono Emergencia</th>
+                        <th scope="col">Opciones</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gestionfuncionario in gestionfuncionarios %}
+                        <tr>
+                            <th scope="row">{{gestionfuncionario.id}}</th>
+                            <td>{{gestionfuncionario.nombreFuncionario}}</td>
+                            <td>{{gestionfuncionario.apellidoFuncionario}}</td>
+                            <td>{{gestionfuncionario.rutFuncionario}}</td>
+                            <td>{{gestionfuncionario.telefonoFuncionario}}</td>
+                            <td>{{gestionfuncionario.direccionFuncionario}}</td>
+                            <td>{{gestionfuncionario.contactoEmergencia}}</td>
+                            <td>{{gestionfuncionario.telefonoEmergencia}}</td>
+                            <td><a class="btn btn-primary" href="{% url 'funcionarioupdate' gestionfuncionario.id %}">Editar</a></td>
+                            <td><a class="btn btn-danger" href="{% url 'funcionariodelete' gestionfuncionario.id %}">Eliminar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                {% for message in messages  %}
+                {% if message.tags == 'success' %}
+                    <div class="text-center alert alert-primary alert-dismissible fade show" role="alert">{{message}}
+                        <a href="{% url 'gestionfuncionarios' %}" type="button" class="btn btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+                    </div>           
+                {% endif %}
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

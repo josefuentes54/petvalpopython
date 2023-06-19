@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <h1>Modificar producto</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input class="m-2 btn btn-success" type="submit" value="Modificar producto">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

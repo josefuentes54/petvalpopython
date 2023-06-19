@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <h1>Editar reserva</h1>
+            <h2>¿Está seguro que desea eliminar esta reserva?</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{form|crispy}} 
+                <input class="m-2 btn btn-danger" type="submit" value="Borrar reserva">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
